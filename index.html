@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<style>
+Body {
+	font-family: Arial, sans-serif;
+	margin: 2px;
+	background-color: #f2f2f2;
+}
+.container {
+	max-width: 400px;
+	background: blue;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba (0, 0, 0, 1);
+	margin: auto;
+}
+label {
+	display: block;
+	margin-top: 10px;
+	font-weight: bold;
+}
+h2 {
+    color: black;
+}
+input {
+    margin-top: 5px;
+}
+button {
+    margin-top: 10px;
+    padding: 5px 10px;
+}
+
+.result {
+	margin-top: 20px;
+	padding: 10px;
+	background-color: #e8ecef;
+	border-radius: 8px;
+	font-weight: bold;
+	white-space: pre-line;
+}
+</style>
+<head>
+    <title>Form Pendaftaran</title>
+    <link rel="stylesheet" href="Summative 2 2026CSS.css">
+</head>
+<body>
+<div class="container">
+	<h2>Form Pendaftaran</h2>
+	<label> Nama: </label>
+		<input type="text" id="nama">
+	<label> Kelas: </label>
+		<input type="text" id="kelas">
+	<label> Umur: </label>
+	<label>
+		<input type="checkbox" name="umur" value="10-12 tahun"> 10-12 tahun
+	</label>
+	<label>
+		<input type="checkbox" name="umur" value="13-15 tahun"> 13-15 tahun
+	</label>
+	<label>
+		<input type="checkbox" name="umur" value="16-17 tahun"> 16-17 tahun
+	</label>
+
+	<label> Kelamin: </label>
+	<label>
+		<input type="radio" name="kelamin" value="Laki-laki"> Laki-laki
+	</label>
+	<label>
+		<input type="radio" name="kelamin" value="Perempuan"> Perempuan
+	</label>
+	<label> Tingkatan: </label>
+	<label>
+		<input type="radio" name="tingkatan" value="SD"> SD
+	</label>
+	<label>
+		<input type="radio" name="tingkatan" value="SMP"> SMP
+	</label>
+	<label>
+		<input type="radio" name="tingkatan" value="SMA"> SMA
+	</label>
+<button id="clearBTN">Clear</button>
+<button id="okBTN">Ok</button>
+</form>
+
+<label> Hasil: </label>
+<div id="hasil"></div>
+
+<script>
+document.getElementById('okBTN').onclick = function () {
+
+    var nama = document.getElementById('nama').value.trim();
+    if (nama === "") {
+        nama = "(Nama Harus Di Isi)";
+    }
+
+    var kelas = document.getElementById('kelas').value.trim();
+    if (kelas === "") {
+        kelas = "(Kelas Harus Di Isi)";
+    }
+
+    var umur = "";
+    var cekUmur = document.getElementsByName('umur');
+    for (var i = 0; i < cekUmur.length; i++) {
+        if (cekUmur[i].checked) {
+            umur += cekUmur[i].value + " ";
+        }
+    }
+    if (umur === "") {
+        umur = "(Pilih Umur)";
+    }
+
+    var kelamin = "";
+    var radios = document.getElementsByName('kelamin');
+    for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+            kelamin = radios[i].value;
+            break;
+        }
+    }
+    if (kelamin === "") {
+        kelamin = "(Pilih Kelamin)";
+    }
+
+    var tingkatan = "";
+    var radioTingkat = document.getElementsByName('tingkatan');
+    for (var i = 0; i < radioTingkat.length; i++) {
+        if (radioTingkat[i].checked) {
+            tingkatan = radioTingkat[i].value;
+            break;
+        }
+    }
+    if (tingkatan === "") {
+        tingkatan = "(Pilih Tingkatan)";
+    }
+
+    var hasilText =
+        "Nama: " + nama + "\n" +
+        "Kelas: " + kelas + "\n" +
+        "Umur: " + umur + "\n" +
+        "Kelamin: " + kelamin + "\n" +
+        "Tingkatan: " + tingkatan;
+
+    document.getElementById('hasil').innerText = hasilText;
+};
+
+
+document.getElementById('clearBTN').onclick = function () {
+    document.getElementById('formPendaftaran').reset();
+    document.getElementById('hasil').innerText = "";
+};
+
+
+</script>
+
+</body>
+</html>
